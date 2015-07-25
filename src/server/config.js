@@ -7,7 +7,7 @@ nconf.env('__');
 var config = {
   appLocales: ['en', 'fr'],
   defaultLocale: 'en',
-  firebaseUrl: 'https://este-firebase.firebaseio.com',
+  firebaseUrl: 'https://este-firebase-1.firebaseio.com',
   googleAnalyticsId: 'UA-XXXXXXX-X',
   isProduction: process.env.NODE_ENV === 'production',
   piping: {
