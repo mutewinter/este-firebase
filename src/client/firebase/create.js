@@ -98,17 +98,12 @@ export function hasFirebaseErrorCode(error) {
   return codes.indexOf(error.code) !== -1;
 }
 
-// TODO: It should return more app type errors.
 export function firebaseError(error) {
   if (!hasFirebaseErrorCode(error)) return error;
   // Heuristic field detection.
   const prop = error.message.indexOf('password') > -1 ? 'password' : 'email';
   // Transform Firebase error to ValidationError.
   return new ValidationError(error.message, prop);
-}
-
-export function onFirebaseError(error) {
-  throw error;
 }
 
 // Firebase key can't contain URL specific chars.

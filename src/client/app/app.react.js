@@ -11,8 +11,10 @@ import {RouteHandler} from 'react-router';
 import {createValidate} from '../validate';
 
 import * as authActions from '../auth/actions';
+import * as firebaseActions from '../firebase/actions';
+import * as secretActions from '../secrets/actions';
 
-const actions = [authActions];
+const actions = [authActions, firebaseActions, secretActions];
 
 @flux(store)
 @firebase
@@ -54,6 +56,7 @@ export default class App extends Component {
   createActions() {
     const {firebase, flux, msg, router} = this.props;
     const validate = createValidate(msg);
+    // console.log(actions)
     this.actions = actions.reduce((actions, {feature, create}) => {
       const dispatch = (action, payload) => flux.dispatch(action, payload, {feature});
       const featureActions = create(
@@ -61,6 +64,7 @@ export default class App extends Component {
       );
       return {...actions, [feature]: featureActions};
     }, {});
+    // console.log(this.actions)
   }
 
   onFirebaseAuth(auth) {
