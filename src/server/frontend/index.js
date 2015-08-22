@@ -9,16 +9,16 @@ import userState from './userstate';
 
 const app = express();
 
-// Add Este.js headers for React related routes only.
-if (!config.isProduction)
-  app.use(esteHeaders());
-
+app.use(esteHeaders());
 app.use(compression());
-// TODO: Add favicon.
+
 // app.use(favicon('assets/img/favicon.ico'))
-// TODO: Move to CDN.
 app.use('/build', express.static('build'));
 app.use('/assets', express.static('assets'));
+
+// Intl
+app.use('/node_modules/intl/dist', express.static('node_modules/intl/dist'));
+app.use('/node_modules/intl/locale-data', express.static('node_modules/intl/locale-data'));
 
 // Load translations, fallback to defaultLocale if no translation is available.
 app.use(intlMiddleware({

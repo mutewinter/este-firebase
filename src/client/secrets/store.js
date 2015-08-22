@@ -15,18 +15,18 @@ export default function(state, action, payload) {
 
   switch (action) {
 
-    case actions.add:
-      return state.set('add', new Secret);
+  case actions.add:
+    return state.set('add', new Secret);
 
-    case actions.onFirebaseSecrets:
-      return state.set('list', Seq(payload)
-        .sortBy(item => item.createdAt)
-        .reverse()
-        .toList()
-      );
+  case actions.onFirebaseSecrets:
+    return state.set('list', Seq(payload)
+      .sortBy(item => item.createdAt)
+      .reverse()
+      .toList()
+    );
 
-    case actions.setAddField:
-      return state.setIn(['add', payload.name], payload.value);
+  case actions.setAddField:
+    return state.setIn(['add', payload.name], payload.value);
 
   }
 

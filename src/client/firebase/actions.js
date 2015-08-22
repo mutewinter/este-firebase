@@ -3,7 +3,7 @@ import invariant from 'invariant';
 export const actions = create();
 export const feature = 'firebase';
 
-export function create(dispatch, validate, msg, firebase) {
+export function create(dispatch, validate, firebase) {
 
   function maybeListenFirebaseRef(decorator, getArgs) {
     const {props} = decorator;
@@ -32,8 +32,9 @@ export function create(dispatch, validate, msg, firebase) {
     );
     events.forEach(eventType => {
       ref.on(eventType, (...args) => {
+        // Do we need it? I don't think so.
         // setTimeout(() => {
-        action(...[eventType, ...args, props]);
+        action(...[...args, props, eventType]);
         // }, 0)
       }, onFirebaseError);
     });

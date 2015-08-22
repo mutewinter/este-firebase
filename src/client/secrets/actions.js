@@ -5,7 +5,7 @@ export const feature = 'secrets';
 
 const formFieldMaxLength = 100;
 
-export function create(dispatch, validate, msg, firebase, router) {
+export function create(dispatch, validate, firebase) {
 
   return {
 
@@ -23,7 +23,7 @@ export function create(dispatch, validate, msg, firebase, router) {
       firebase.remove(['secrets', viewer.id, secret.id]);
     },
 
-    onFirebaseSecrets(eventType, snapshot, props) {
+    onFirebaseSecrets(snapshot) {
       dispatch(actions.onFirebaseSecrets, snapshot.val());
     },
 
